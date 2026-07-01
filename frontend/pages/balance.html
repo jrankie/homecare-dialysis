@@ -2,9 +2,183 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table,th,td{
+            border:1px solid black;
+        }
+    </style>
 </head>
+
 <body>
+    <h2>REPORTE DE BALANCE HÍDRICO - DIÁLISIS PERITONEAL</h2>
+    <form>
+    <label>Paciente</label>
+    <input type="text" id="username" name="username"><br>
+    
+    <label>Fecha</label>
+    <input type="date" id="fecha_tratamiento" name="fecha"><br> <!--  el id de fecha tratamiento-->
+
+    <label>Sistema</label>
+    <select id="sistema" name="sistema" > 
+    <option value="Baxter"> Baxter</option>
+    <option value="Fresenius Medical Care. ">Fresenius Medical Care. </option>
+
+    </select><br>
+
+    <label> P/A</label>
+    <input type="text"><br>
+
+    <label>Pulso</label>
+    <input type="number"><br>
+
+    <div>
+    <label>Fecha</label>
+    <input type="date" id="fecha" name="fecha"><br>
+    <label>Hora</label>
+    <input type="time" id="hora" name="hora"><br>
+    </div>
+
+    <div>
+    <table>
+        <tr>
+            <th>Recambio</th>
+            <th>Concentración</th>
+            <th>Infusión</th>
+            <th>Drenaje</th>
+            <th>Cualidad</th>
+            <th>Balance</th>
+        </tr>
+        <tr> <!--Recambio-->
+            <td>1</td>
+            <td>
+                <select id="concentracion1" name="concentracion1" >
+                <option value="1.5%">1.5%</option>
+                <option value="2.5%">2.5%</option>
+                <option value="7.5%">7.5%</option>
+            </select>
+        </td>
+            <td>
+                <label > ml</label>
+                <select >
+                    <option value="2000"> 2000</option>
+                </select>
+            </td>
+            <td>
+                <label for="drenar1">ml.</label>
+                <input type="number" id="drenar1" name="drenar">
+
+            </td>
+            <td>
+                <select id="cualidad1" name="cualidad1">
+                <option value="Claro">Claro</option>
+                <option value="Turbio">Turbio</option>
+            </select>
+            </td>
+
+            <td id="balance1"></td>
+        </tr>
+
+        <tr> <!--Concentracion-->
+            <td>2</td>
+            <td>
+                <select id="concentracion2" name="concentracion2">
+                <option value="1.5%">1.5%</option>
+                <option value="2.5%">2.5%</option>
+                <option value="7.5%">7.5%</option>
+            </select>
+            </td>
+            <td>
+                <label > ml</label>
+                <select>
+                    <option value="2000"> 2000</option>
+                </select>
+            </td>
+            <td>
+                <label for="drenar2">ml.</label>
+                <input type="number" id="drenar2" name="drenar">
+            </td>
+            <td>
+                <select id="cualidad2" name="cualidad2">
+                <option value="Claro">Claro</option>
+                <option value="Turbio">Turbio</option>
+            </select>
+            </td>
+            <td id="balance2"></td>
+        </tr>
+
+                <tr> <!--infusion-->
+            <td>3</td>
+            <td>
+                <select id="concentracion3" name="concentracion3">
+                <option value="1.5%">1.5%</option>
+                <option value="2.5%">2.5%</option>
+                <option value="7.5%">7.5%</option>
+            </select>
+            </td>
+            <td>
+                <label > ml</label>
+                <select>
+                    <option value="2000"> 2000</option>
+                </select>
+            </td>
+            <td>
+                <label for="drenar3">ml.</label>
+                <input type="number" id="drenar3" name="drenar">
+            </td>
+            <td>
+                <select id="cualidad3" name="cualidad3">
+                <option value="Claro">Claro</option>
+                <option value="Turbio">Turbio</option>
+            </select>
+            </td>
+            <td id="balance3"></td>
+        </tr>
+
+        
+                <tr> <!--Drenaje-->
+            <td>4</td>
+            <td>
+                <select id="concentracion4" name="concentracion4">
+                <option value="1.5%">1.5%</option>
+                <option value="2.5%">2.5%</option>
+                <option value="7.5%">7.5%</option>
+            </select>
+            </td>
+            <td>
+                <label > ml</label>
+                <select>
+                    <option value="2000"> 2000</option>
+                </select>
+            </td>
+            <td>
+                <label for="drenar4">ml.</label>
+                <input type="number" id="drenar4" name="drenar">
+            </td>
+            <td>
+                <select id="cualidad4" name="cualidad4">
+                <option value="Claro">Claro</option>
+                <option value="Turbio">Turbio</option>
+            </select>
+            </td>
+            <td id="balance4"></td>
+        </tr>
+         <!--Balance-->
+                <tr>
+            <td>Total</td>
+            <td></td>
+            <td id="totalInfusion"></td>
+            <td id="totalDrenaje"></td>
+            <td></td>
+            <td id="totalBalance"></td>
+
+        </tr>
+    </table>
+        <button>Calcular</button>
+    <h4>Análisis de resultados para el paciente:</h4>
+    </form>
+
 
 </body>
 </html>
