@@ -6,4 +6,4 @@ Pagina web basada en PHP. Es un sistema para hacer diagnosticos para pacientes q
 Este proyecto está dividido en tres capas:
   - Frontend (HTML, CSS)
   - Backend (PHP nativo, no frameworks)
-  - Base de datos (Supabase)
+  - Base de datos (MySQL local)
