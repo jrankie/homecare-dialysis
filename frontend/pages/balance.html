@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
     <title>Document</title>
     <style>
         table,th,td{
@@ -12,13 +13,24 @@
 </head>
 
 <body>
-    <h2>REPORTE DE BALANCE HÍDRICO - DIÁLISIS PERITONEAL</h2>
+    <nav class="navbar">
+        <ul>
+            <li><a href="login.html">Inicio de Sesion</a></li>
+            <li><a href="index.html">Panel General</a></li>
+            <li><a href="balance.html" class="activo" >Balance Hídrico</a></li>
+            <li><a href="glicemias.html">Análisis Glicemia</a></li>
+            <li><a href="reportes.html">Analítica Visual</a></li>
+        </ul>
+    </nav>
+
+    <div class="contenido-principal">
+        <h2>REPORTE DE BALANCE HÍDRICO - DIÁLISIS PERITONEAL</h2>
     <form method="post" action="../../backend/api/recambios.php">
     <label>Paciente</label>
     <input type="text" id="username" name="username"><br>
     
     <label>Fecha</label>
-    <input type="date" id="fecha_tratamiento" name="fecha_tratamiento"><br> <!--  el id de fecha tratamiento-->
+    <input type="date" id="fecha_tratamiento" name="fecha"><br> <!--  el id de fecha tratamiento-->
 
     <label>Sistema</label>
     <select id="sistema" name="sistema" > 
@@ -28,10 +40,10 @@
     </select><br>
 
     <label> P/A</label>
-    <input type="text" id="presion_arterial" name="presion_arterial"><br>
+    <input type="text"><br>
 
     <label>Pulso</label>
-    <input type="number" id="pulso" name="pulso"><br>
+    <input type="number"><br>
 
     <div>
     <label>Fecha</label>
@@ -67,7 +79,7 @@
             </td>
             <td>
                 <label for="drenar1">ml.</label>
-                <input type="number" id="drenar1" name="drenar1">
+                <input type="number" id="drenar1" name="drenar">
 
             </td>
             <td>
@@ -97,7 +109,7 @@
             </td>
             <td>
                 <label for="drenar2">ml.</label>
-                <input type="number" id="drenar2" name="drenar2">
+                <input type="number" id="drenar2" name="drenar">
             </td>
             <td>
                 <select id="cualidad2" name="cualidad2">
@@ -125,7 +137,7 @@
             </td>
             <td>
                 <label for="drenar3">ml.</label>
-                <input type="number" id="drenar3" name="drenar3">
+                <input type="number" id="drenar3" name="drenar">
             </td>
             <td>
                 <select id="cualidad3" name="cualidad3">
@@ -154,7 +166,7 @@
             </td>
             <td>
                 <label for="drenar4">ml.</label>
-                <input type="number" id="drenar4" name="drenar4">
+                <input type="number" id="drenar4" name="drenar">
             </td>
             <td>
                 <select id="cualidad4" name="cualidad4">
@@ -175,17 +187,15 @@
 
         </tr>
     </table>
-        <button id="calcular" type="button">Calcular</button>
-        <button type="submit">Guardar en Base de Datos</button>
+        <button id="calcular">Calcular</button>
     <h4 id="analisis">Análisis de resultados para el paciente:</h4>
     </form>
-    <script src="js/main.js"></script>
+    <script src="../js/main.js"></script>
 
 <h3>Historial</h3>
 <div>
     <table>
         <tr>
-
             <th>Fecha</th>
             <th>Paciente</th>
             <th>Balance</th>
@@ -197,19 +207,22 @@
             <td>J. Pérez</td>
             <td>Dato 1.3</td>
             <td>Dato 1.4</td>
+        </tr> 
 
+
+        <tr>
+            <td>05/07</td>
+            <td>DJ. Pérez</td>
+            <td>-300 ml</td>
+            <td>Dato 2.4</td>
         </tr>
-        <td>05/07</td>
-        <td>DJ. Pérez</td>
-        <td>-300 ml</td>
-        <td>Dato 2.4</td>
+
 
         <tr>
             <td>06/07</td>
             <td>-300 ml</td>
             <td>Dato 2.3</td>
             <td>Dato 2.4</td>
-            
         </tr>
 
 
@@ -225,6 +238,12 @@
 
 
     </table>
+
+    </div>
+
+
+
+    
 
 
 </body>

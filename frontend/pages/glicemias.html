@@ -4,33 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
+
 <body>
+        <nav class="navbar">
+        <ul>
+            <li><a href="login.html">Inicio de Sesion</a></li>
+            <li><a href="index.html">Panel General</a></li>
+            <li><a href="balance.html">Balance Hídrico</a></li>
+            <li><a href="glicemias.html" class="activo">Análisis Glicemia</a></li>
+            <li><a href="reportes.html">Analítica Visual</a></li>
+        </ul>
+    </nav>
 
-    <h2>Módulo de Glicemias</h2>
+    <div class="contenido-principal">
 
-    <form method="post" action="../../backend/api/glicemia.php">
-    <label>Valor de glucosa (mg/dL)</label>
-    <input type="number" id="glucosa" name="glucosa" required><br>
 
-    <label>Momento de medición</label>
-    <select id="momento" name="momento" required>
-    <option value="ayunas">Ayunas</option>
-    <option value="antes">Antes de la comida</option>
-    <option value="despues">2 horas después de la comida</option>
-    </select><br>
+        <h2>Módulo de Glicemias</h2>
 
-    <button id="analizar" type="submit">Analizar y Guardar</button>
-    </form>
+        <label>Valor de glucosa (mg/dL)</label>
+        <input type="number" id="glucosa"><br>
 
-<h3>Historial</h3>
-    <div class ="container">
-        <div class ="card">
-            <p class="card-valor">98 mg/dL</p>
-            <p class="card-detalle">Ayunas · 05/07 8:30 a.m.</p>
-            <span class="card-estado">Normal</span>
+        <label>Momento de medición</label>
+        <select id="momento">
+            <option value="ayunas">Ayunas</option>
+            <option value="antes">Antes de la comida</option>
+            <option value="despues">2 horas después de la comida</option>
+        </select><br>
 
+        <button id="analizar">Analizar</button>
+
+        <h3>Historial</h3>
+        <div class="container">
+            <div class="card">
+                <p class="card-valor">98 mg/dL</p>
+                <p class="card-detalle">Ayunas · 05/07 8:30 a.m.</p>
+                <span class="card-estado">Normal</span>
+            </div>
         </div>
+
     </div>
 
 </body>
