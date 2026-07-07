@@ -1,5 +1,5 @@
 const button = document.getElementById("calcular")
-button.addEventListener("click",function(){
+button.addEventListener("click", function(event) {
     event.preventDefault()
     let drenaje1 = document.getElementById("drenar1").value
     let balance1 = 2000 - drenaje1
