@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
     <title>Document</title>
     <style>
         table,th,td{
@@ -12,7 +13,18 @@
 </head>
 
 <body>
-    <h2>REPORTE DE BALANCE HÍDRICO - DIÁLISIS PERITONEAL</h2>
+    <nav class="navbar">
+        <ul>
+            <li><a href="login.html">Inicio de Sesion</a></li>
+            <li><a href="index.html">Panel General</a></li>
+            <li><a href="balance.html" class="activo" >Balance Hídrico</a></li>
+            <li><a href="glicemias.html">Análisis Glicemia</a></li>
+            <li><a href="reportes.html">Analítica Visual</a></li>
+        </ul>
+    </nav>
+
+    <div class="contenido-principal">
+        <h2>REPORTE DE BALANCE HÍDRICO - DIÁLISIS PERITONEAL</h2>
     <form>
     <label>Paciente</label>
     <input type="text" id="username" name="username"><br>
@@ -175,16 +187,15 @@
 
         </tr>
     </table>
-        <button id="calcular=">Calcular</button>
+        <button id="calcular">Calcular</button>
     <h4 id="analisis">Análisis de resultados para el paciente:</h4>
     </form>
-    <script src="js/main.js"></script>
+    <script src="../js/main.js"></script>
 
 <h3>Historial</h3>
 <div>
     <table>
         <tr>
-
             <th>Fecha</th>
             <th>Paciente</th>
             <th>Balance</th>
@@ -196,19 +207,22 @@
             <td>J. Pérez</td>
             <td>Dato 1.3</td>
             <td>Dato 1.4</td>
+        </tr> 
 
+
+        <tr>
+            <td>05/07</td>
+            <td>DJ. Pérez</td>
+            <td>-300 ml</td>
+            <td>Dato 2.4</td>
         </tr>
-        <td>05/07</td>
-        <td>DJ. Pérez</td>
-        <td>-300 ml</td>
-        <td>Dato 2.4</td>
+
 
         <tr>
             <td>06/07</td>
             <td>-300 ml</td>
             <td>Dato 2.3</td>
             <td>Dato 2.4</td>
-            
         </tr>
 
 
@@ -224,6 +238,12 @@
 
 
     </table>
+
+    </div>
+
+
+
+    
 
 
 </body>
