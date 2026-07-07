@@ -9,17 +9,19 @@
 
     <h2>Módulo de Glicemias</h2>
 
+    <form method="post" action="../../backend/api/glicemia.php">
     <label>Valor de glucosa (mg/dL)</label>
-    <input type="number" id="glucosa"><br>
+    <input type="number" id="glucosa" name="glucosa" required><br>
 
     <label>Momento de medición</label>
-    <select id="momento">
+    <select id="momento" name="momento" required>
     <option value="ayunas">Ayunas</option>
     <option value="antes">Antes de la comida</option>
     <option value="despues">2 horas después de la comida</option>
-</select><br>
+    </select><br>
 
-<button id="analizar">Analizar</button>
+    <button id="analizar" type="submit">Analizar y Guardar</button>
+    </form>
 
 <h3>Historial</h3>
     <div class ="container">
