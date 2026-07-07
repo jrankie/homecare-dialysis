@@ -66,9 +66,9 @@ CREATE TABLE glicemias (
 -- DATOS INICIALES
 INSERT INTO usuarios (nombre, usuario, contrasena, rol)
 VALUES
-    ('Administrador', 'admin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin'),
-    ('Paciente Demo', 'paciente', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'paciente'),
-    ('Doctor Demo', 'medico', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'medico');
+    ('Administrador', 'admin', '$2y$12$ODmfNDXaPV.uJMOrbWn6BO6PB/./9.GB/9Ideh6R3hhNFfxs5dPJG', 'admin'),
+    ('Paciente Demo', 'paciente', '$2y$12$86SFNTiFOJcvDOgGG2dBjuyx/Z24n6x4UU3rkDNO2LfZxDmgpUmhi', 'paciente'),
+    ('Doctor Demo', 'medico', '$2y$12$HdpHX83L/Daw22ymh3ymAu9A45jAWsXQjyv00pCJljQFi/6jIusUy', 'medico');
 
 INSERT INTO pacientes (usuario_id, nombre_completo) VALUES (2, 'Paciente Demo');
 INSERT INTO medicos (usuario_id, nombre_completo, especialidad) VALUES (3, 'Doctor Demo', 'Nefrología');

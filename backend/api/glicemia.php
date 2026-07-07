@@ -1,8 +1,7 @@
 <?php
 session_start();
-require_once '../config/database.php';
+require_once '../config/dbconn.php';
 
-// 1. Validar sesión de paciente
 if (!isset($_SESSION['usuario']) || $_SESSION['rol'] !== 'paciente') {
     echo "<script language='javascript'>
         alert('Acceso denegado. Debe iniciar sesión como paciente.');
@@ -21,7 +20,7 @@ if (!$paciente_id) {
     exit();
 }
 
-// Función para determinar el diagnóstico según los rangos clínicos del profesor
+// diagnostico segun rangos del profe
 function obtenerDiagnostico($valor, $momento) {
     if ($valor < 70) {
         return "Hipoglucemia";
@@ -55,15 +54,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit();
         }
 
-        // Calcular diagnóstico
         $diagnostico = obtenerDiagnostico($valor_glucosa, $momento);
 
-        $db = obtenerConexion();
+        $db = $conectar;
 
-        // Guardar en la base de datos
         $sql = $db->prepare("INSERT INTO glicemias (paciente_id, valor_glucosa, momento, diagnostico) VALUES (?, ?, ?, ?)");
         
-        // Vincular parámetros: paciente_id(i), valor_glucosa(d), momento(s), diagnostico(s)
         $sql->bind_param('idss', $paciente_id, $valor_glucosa, $momento, $diagnostico);
 
         if ($sql->execute()) {
@@ -74,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         echo "<script language='javascript'>
             alert('$mensaje');
-            window.location.href = '../../frontend/pages/glicemias.html';
+            window.location.href = '../../frontend/pages/glicemias.php';
         </script>";
 
         $sql->close();

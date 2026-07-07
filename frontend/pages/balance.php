@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// 1. Validar sesión
 if (!isset($_SESSION['usuario']) || $_SESSION['rol'] !== 'paciente') {
     header("Location: login.html");
     exit();
@@ -11,7 +10,7 @@ require_once "../../backend/config/dbconn.php";
 $paciente_id = $_SESSION['paciente_id'];
 $nombre_paciente = $_SESSION['nombre'];
 
-// 2. Consulta SQL para el Historial agrupado por Fecha
+
 $sql = $conectar->prepare("SELECT fecha_tratamiento, SUM(infusion) as total_infusion, SUM(drenaje) as total_drenaje, SUM(balance) as total_balance 
                            FROM recambios 
                            WHERE paciente_id = ? 
@@ -57,11 +56,11 @@ mysqli_close($conectar);
     <nav class="navbar">
         <ul>
             <li><a href="login.html">Inicio de Sesion</a></li>
-            <li><a href="general.html">Panel General</a></li>
+            <li><a href="general.php">Panel General</a></li>
             <li><a href="balance.php" class="activo" >Balance Hídrico</a></li>
             <li><a href="glicemias.php">Análisis Glicemia</a></li>
-            <li><a href="reportes.html">Analítica Visual</a></li>
-            <li><a href="../../backend/api/logout.php" class="btn-cerrar-sesion">Cerrar Sesión</a></li>
+            <li><a href="reportes.php">Analítica Visual</a></li>
+            <li><a href="../../backend/api/logout.php">Cerrar Sesión</a></li>
         </ul>
     </nav>
 
@@ -69,7 +68,7 @@ mysqli_close($conectar);
         <h2>REPORTE DE BALANCE HÍDRICO - DIÁLISIS PERITONEAL</h2>
         <form method="post" action="../../backend/api/recambios.php">
         <label>Paciente</label>
-        <input type="text" id="username" name="username" value="<?php echo htmlspecialchars($nombre_paciente); ?>" readonly><br>
+        <input type="text" id="username" name="username" value="<?php echo $nombre_paciente; ?>" readonly><br>
         
         <label>Fecha</label>
         <input type="date" id="fecha_tratamiento" name="fecha_tratamiento" required><br>
@@ -240,14 +239,21 @@ mysqli_close($conectar);
                     <th>Balance Diario</th>
                     <th>Estado</th>
                 </tr>
-                <?php foreach ($historial as $fila) { ?>
-                <tr>
-                    <td><?php echo htmlspecialchars($fila['fecha_tratamiento']); ?></td>
-                    <td><?php echo htmlspecialchars($nombre_paciente); ?></td>
-                    <td><?php echo htmlspecialchars($fila['total_balance']); ?> ml</td>
-                    <td><?php echo htmlspecialchars($fila['estado']); ?></td>
-                </tr>
-                <?php } ?>
+                <?php
+                foreach ($historial as $fila) {
+                    $fecha = $fila['fecha_tratamiento'];
+                    $paciente = $nombre_paciente;
+                    $balance = $fila['total_balance'];
+                    $estado = $fila['estado'];
+                    
+                    echo "<tr>
+                        <td>$fecha</td>
+                        <td>$paciente</td>
+                        <td>$balance ml</td>
+                        <td>$estado</td>
+                    </tr>";
+                }
+                ?>
             </table>
         </div>
     </div>

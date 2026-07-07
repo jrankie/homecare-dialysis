@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// 1. Validar si esta la sesion iniciada, si no esta iniciada, el usuario lo regresa a login.html
 if (!isset($_SESSION['usuario']) || $_SESSION['rol'] !== 'paciente') {
     header("Location: login.html");
     exit();
@@ -9,8 +8,6 @@ if (!isset($_SESSION['usuario']) || $_SESSION['rol'] !== 'paciente') {
 
 require_once "../../backend/config/dbconn.php";
 $paciente_id = $_SESSION['paciente_id'];
-
-// 2. Consulta SQL para el Historial de Glicemias
 
 $sql = $conectar->prepare("SELECT valor_glucosa, momento, diagnostico, created_at FROM glicemias WHERE paciente_id = ? ORDER BY created_at DESC");
 $sql->bind_param("i", $paciente_id);
@@ -38,11 +35,11 @@ mysqli_close($conectar);
     <nav class="navbar">
         <ul>
             <li><a href="login.html">Inicio de Sesion</a></li>
-            <li><a href="general.html">Panel General</a></li>
+            <li><a href="general.php">Panel General</a></li>
             <li><a href="balance.php">Balance Hídrico</a></li>
             <li><a href="glicemias.php" class="activo">Análisis Glicemia</a></li>
-            <li><a href="reportes.html">Analítica Visual</a></li>
-            <li><a href="../../backend/api/logout.php" class="btn-cerrar-sesion">Cerrar Sesión</a></li>
+            <li><a href="reportes.php">Analítica Visual</a></li>
+            <li><a href="../../backend/api/logout.php">Cerrar Sesión</a></li>
         </ul>
     </nav>
 
@@ -65,13 +62,20 @@ mysqli_close($conectar);
 
         <h3>Historial</h3>
         <div class="container">
-            <?php foreach ($historial as $fila) { ?>
-            <div class="card">
-                <p class="card-valor"><?php echo htmlspecialchars($fila['valor_glucosa']); ?> mg/dL</p>
-                <p class="card-detalle"><?php echo htmlspecialchars(ucfirst($fila['momento'])); ?> · <?php echo htmlspecialchars($fila['created_at']); ?></p>
-                <span class="card-estado"><?php echo htmlspecialchars($fila['diagnostico']); ?></span>
-            </div>
-            <?php } ?>
+            <?php
+            foreach ($historial as $fila) {
+                $valor = htmlspecialchars($fila['valor_glucosa']);
+                $momento = htmlspecialchars(ucfirst($fila['momento']));
+                $fecha = htmlspecialchars($fila['created_at']);
+                $diagnostico = htmlspecialchars($fila['diagnostico']);
+                
+                echo "<div class='card'>
+                    <p class='card-valor'>$valor mg/dL</p>
+                    <p class='card-detalle'>$momento · $fecha</p>
+                    <span class='card-estado'>$diagnostico</span>
+                </div>";
+            }
+            ?>
         </div>
     </div>
 </body>
