@@ -1,1 +1,84 @@
 <?php
+session_start();
+require_once '../config/database.php';
+
+// 1. Validar sesión de paciente
+if (!isset($_SESSION['usuario']) || $_SESSION['rol'] !== 'paciente') {
+    echo "<script language='javascript'>
+        alert('Acceso denegado. Debe iniciar sesión como paciente.');
+        window.location.href = '../../frontend/pages/login.html';
+    </script>";
+    exit();
+}
+
+$paciente_id = $_SESSION['paciente_id'] ?? null;
+
+if (!$paciente_id) {
+    echo "<script language='javascript'>
+        alert('Error: No se encontró el perfil de paciente asociado a su cuenta.');
+        window.location.href = '../../frontend/pages/login.html';
+    </script>";
+    exit();
+}
+
+// Función para determinar el diagnóstico según los rangos clínicos del profesor
+function obtenerDiagnostico($valor, $momento) {
+    if ($valor < 70) {
+        return "Hipoglucemia";
+    }
+
+    if ($momento === 'ayunas') {
+        if ($valor <= 99) return "Normal";
+        if ($valor <= 125) return "Prediabetes";
+        return "Hiperglucemia";
+    } elseif ($momento === 'antes') {
+        if ($valor <= 130) return "Normal";
+        if ($valor <= 140) return "Prediabetes";
+        return "Hiperglucemia";
+    } else { // despues
+        if ($valor < 140) return "Normal";
+        if ($valor <= 199) return "Prediabetes";
+        return "Hiperglucemia";
+    }
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['glucosa']) && isset($_POST['momento'])) {
+        $valor_glucosa = floatval($_POST['glucosa']);
+        $momento = trim($_POST['momento']);
+
+        if ($valor_glucosa <= 0 || empty($momento)) {
+            echo "<script language='javascript'>
+                alert('Ingrese un valor de glucosa válido.');
+                window.history.back();
+            </script>";
+            exit();
+        }
+
+        // Calcular diagnóstico
+        $diagnostico = obtenerDiagnostico($valor_glucosa, $momento);
+
+        $db = obtenerConexion();
+
+        // Guardar en la base de datos
+        $sql = $db->prepare("INSERT INTO glicemias (paciente_id, valor_glucosa, momento, diagnostico) VALUES (?, ?, ?, ?)");
+        
+        // Vincular parámetros: paciente_id(i), valor_glucosa(d), momento(s), diagnostico(s)
+        $sql->bind_param('idss', $paciente_id, $valor_glucosa, $momento, $diagnostico);
+
+        if ($sql->execute()) {
+            $mensaje = "Glicemia guardada exitosamente. Diagnóstico: " . $diagnostico;
+        } else {
+            $mensaje = "Se ha producido un error al guardar el registro.";
+        }
+
+        echo "<script language='javascript'>
+            alert('$mensaje');
+            window.location.href = '../../frontend/pages/glicemias.html';
+        </script>";
+
+        $sql->close();
+        mysqli_close($db);
+    }
+}
+?>

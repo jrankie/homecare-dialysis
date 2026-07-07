@@ -1,5 +1,5 @@
 <?php
-require_once 'backend/config/database.php';
+require_once 'backend/config/dbconn.php';
 
 try {
     $db = obtenerConexion();

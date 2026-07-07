@@ -3,6 +3,7 @@ body{
     background: #eaf7fb;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
+    overflow-y: auto;
 }
 
 
@@ -15,6 +16,7 @@ body{
     top: 0;
     left: 0;
     box-shadow: 2px 0 10px rgba(0,0,0,.05);
+    overflow-y: auto; /* Habilita scroll en la barra lateral si es necesario */
 }
 
 .navbar ul{
@@ -24,8 +26,8 @@ body{
 
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
+    justify-content: flex-start;
+    gap: 5px; /* Pequeño espacio entre elementos */
 }
 
 .navbar a{
@@ -55,4 +57,19 @@ body{
 
     padding: 40px;
     box-sizing: border-box;
+}
+
+.navbar a.btn-cerrar-sesion {
+    background: #d9534f;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    margin: 10px 15px;
+    text-align: center;
+    padding: 10px 20px;
+    transition: background 0.2s ease;
+}
+
+.navbar a.btn-cerrar-sesion:hover {
+    background: #c9302c;
 }
