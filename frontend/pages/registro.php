@@ -8,7 +8,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $usuario = trim($_POST['usuario']);
     $contrasena = trim($_POST['contrasena']);
 
-    // Verificar si el usuario ya existe
     $check_sql = $conectar->prepare("SELECT id FROM usuarios WHERE usuario = ?");
     $check_sql->bind_param('s', $usuario);
     $check_sql->execute();
@@ -23,17 +22,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     $check_sql->close();
 
-    // Hashear contraseña (bcrypt)
     $hash_contrasena = password_hash($contrasena, PASSWORD_BCRYPT);
 
-    // Insertar nuevo usuario en la base de datos
     $sql_user = $conectar->prepare("INSERT INTO usuarios (nombre, usuario, contrasena, rol) VALUES (?, ?, ?, 'paciente')");
     $sql_user->bind_param('sss', $nombre, $usuario, $hash_contrasena);
 
     if ($sql_user->execute()) {
         $usuario_id = mysqli_insert_id($conectar);
         
-        // Crear perfil de paciente asociado
         $sql_paciente = $conectar->prepare("INSERT INTO pacientes (usuario_id, nombre_completo) VALUES (?, ?)");
         $sql_paciente->bind_param('is', $usuario_id, $nombre);
         $sql_paciente->execute();
