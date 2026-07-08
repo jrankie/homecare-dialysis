@@ -20,7 +20,7 @@ if (!$paciente_id) {
     exit();
 }
 
-// diagnostico segun rangos del profe
+
 function obtenerDiagnostico($valor, $momento) {
     if ($valor < 70) {
         return "Hipoglucemia";
