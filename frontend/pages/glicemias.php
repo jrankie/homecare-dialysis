@@ -43,7 +43,8 @@ mysqli_close($conectar);
         </ul>
     </nav>
 
-    <div class="contenido-principal">
+    <div class="contenido glicemia">
+        <div class="modulo-glicemia">
         <h2>Módulo de Glicemias</h2>
 
         <form method="post" action="../../backend/php/glicemia.php">
@@ -55,9 +56,13 @@ mysqli_close($conectar);
             <option value="ayunas">Ayunas</option>
             <option value="antes">Antes de la comida</option>
             <option value="despues">2 horas después de la comida</option>
+        </div>
+</div>
         </select><br>
 
-        <button id="analizar" type="submit">Analizar y Guardar</button>
+        <div class="boton-glicemia">
+        <button id="analizar" type="submit" class="glicemia-btn">Analizar y Guardar</button>
+        </div>
         </form>
 
         <h3>Historial</h3>
