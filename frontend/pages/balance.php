@@ -60,13 +60,13 @@ mysqli_close($conectar);
             <li><a href="balance.php" class="activo" >Balance Hídrico</a></li>
             <li><a href="glicemias.php">Análisis Glicemia</a></li>
             <li><a href="reportes.php">Analítica Visual</a></li>
-            <li><a href="../../backend/api/logout.php">Cerrar Sesión</a></li>
+            <li><a href="../../backend/php/logout.php">Cerrar Sesión</a></li>
         </ul>
     </nav>
 
     <div class="contenido-principal">
         <h2>REPORTE DE BALANCE HÍDRICO - DIÁLISIS PERITONEAL</h2>
-        <form method="post" action="../../backend/api/recambios.php">
+        <form method="post" action="../../backend/php/recambios.php">
         <label>Paciente</label>
         <input type="text" id="username" name="username" value="<?php echo $nombre_paciente; ?>" readonly><br>
         

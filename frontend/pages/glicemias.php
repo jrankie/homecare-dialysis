@@ -39,14 +39,14 @@ mysqli_close($conectar);
             <li><a href="balance.php">Balance Hídrico</a></li>
             <li><a href="glicemias.php" class="activo">Análisis Glicemia</a></li>
             <li><a href="reportes.php">Analítica Visual</a></li>
-            <li><a href="../../backend/api/logout.php">Cerrar Sesión</a></li>
+            <li><a href="../../backend/php/logout.php">Cerrar Sesión</a></li>
         </ul>
     </nav>
 
     <div class="contenido-principal">
         <h2>Módulo de Glicemias</h2>
 
-        <form method="post" action="../../backend/api/glicemia.php">
+        <form method="post" action="../../backend/php/glicemia.php">
         <label>Valor de glucosa (mg/dL)</label>
         <input type="number" id="glucosa" name="glucosa" required><br>
 

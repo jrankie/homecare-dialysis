@@ -56,7 +56,7 @@ mysqli_close($conectar);
             <li><a href="balance.php">Balance Hídrico</a></li>
             <li><a href="glicemias.php">Análisis Glicemia</a></li>
             <li><a href="reportes.php">Analítica Visual</a></li>
-            <li><a href="../../backend/api/logout.php">Cerrar Sesión</a></li>
+            <li><a href="../../backend/php/logout.php">Cerrar Sesión</a></li>
         </ul>
     </nav>
 
