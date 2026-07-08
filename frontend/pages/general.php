@@ -60,49 +60,60 @@ mysqli_close($conectar);
         </ul>
     </nav>
 
-    <div class="contenido-principal">
-        <h2>Panel de Control General</h2>
-        <p>Bienvenido de nuevo, <strong><?php echo htmlspecialchars($nombre_usuario); ?></strong>. Rol: <em><?php echo ucfirst($rol); ?></em></p>
+<div class="contenido">
+        <div class="panel-general">
 
-        <?php if ($rol === 'paciente') { ?>
-            <h3>Resumen del Día</h3>
-            
-            <p><strong>Última Glicemia de Hoy:</strong> 
-            <?php if ($glicemia_hoy) { 
-                $val = htmlspecialchars($glicemia_hoy['valor_glucosa']);
-                $mom = htmlspecialchars(ucfirst($glicemia_hoy['momento']));
-                $diag = htmlspecialchars($glicemia_hoy['diagnostico']);
-                echo "$val mg/dL ($mom) - Estado: $diag";
-            } else { 
-                echo "Sin mediciones hoy";
-            } ?>
-            </p>
+            <div class="panel-texto">    
+                <h2>Panel de Control General</h2>
+                <p>Bienvenido de nuevo, <strong><?php echo htmlspecialchars($nombre_usuario); ?></strong>. Rol: <em><?php echo ucfirst($rol); ?></em></p>
 
-            <p><strong>Balance Hídrico de Hoy:</strong> 
-            <?php if ($balance_hoy && $balance_hoy['total_infusion'] > 0) { 
-                $inf = intval($balance_hoy['total_infusion']);
-                $dre = intval($balance_hoy['total_drenaje']);
-                $bal = intval($balance_hoy['total_balance']);
-                
-                if ($bal <= 0) {
-                    $diag_bal = "Favorable";
-                } elseif ($bal <= 2000) {
-                    $diag_bal = "Retención moderada";
-                } else {
-                    $diag_bal = "Excesiva retención";
-                }
-                echo "$bal ml (Infundido: $inf ml, Drenado: $dre ml) - Estado: $diag_bal";
-            } else { 
-                echo "Sin registros hoy";
-            } ?>
-            </p>
+                <?php if ($rol === 'paciente') { ?>
+                    <h3>Resumen del Día</h3>
+                    
+                    <p class="card"><strong>Última Glicemia de Hoy:</strong> 
+                    <?php if ($glicemia_hoy) { 
+                        $val = htmlspecialchars($glicemia_hoy['valor_glucosa']);
+                        $mom = htmlspecialchars(ucfirst($glicemia_hoy['momento']));
+                        $diag = htmlspecialchars($glicemia_hoy['diagnostico']);
+                        echo "$val mg/dL ($mom) - Estado: $diag";
+                    } else { 
+                        echo "Sin mediciones hoy";
+                    } ?>
+                    </p>
 
-        <?php } else { ?>
-            <p>Estás conectado con un perfil del personal médico.</p>
-            <p>Para consultar el estado clínico de los pacientes o ver sus gráficos de evolución, dirígete a la sección de analítica.</p>
-            <p><a href="reportes.php">Ir a Analítica Visual</a></p>
-        <?php } ?>
+                    <p class="card"><strong>Balance Hídrico de Hoy:</strong> 
+                    <?php if ($balance_hoy && $balance_hoy['total_infusion'] > 0) { 
+                        $inf = intval($balance_hoy['total_infusion']);
+                        $dre = intval($balance_hoy['total_drenaje']);
+                        $bal = intval($balance_hoy['total_balance']);
+                        
+                        if ($bal <= 0) {
+                            $diag_bal = "Favorable";
+                        } elseif ($bal <= 2000) {
+                            $diag_bal = "Retención moderada";
+                        } else {
+                            $diag_bal = "Excesiva retención";
+                        }
+                        echo "$bal ml (Infundido: $inf ml, Drenado: $dre ml) - Estado: $diag_bal";
+                    } else { 
+                        echo "Sin registros hoy";
+                    } ?>
+                    </p>
+
+                <?php } else { ?>
+                    <p>Estás conectado con un perfil del personal médico.</p>
+                    <p>Para consultar el estado clínico de los pacientes o ver sus gráficos de evolución, dirígete a la sección de analítica.</p>
+                    <p><a href="reportes.php">Ir a Analítica Visual</a></p>
+                <?php } ?>
+            </div>
+
+            <div class="panel-imagen">
+                <img src="../imgs/ilustracion.png" alt="Monitoreo de salud">
+            </div>
+
+        </div>
     </div>
+
 
 </body>
 </html>

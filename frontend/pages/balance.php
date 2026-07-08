@@ -60,32 +60,47 @@ mysqli_close($conectar);
         </ul>
     </nav>
 
-    <div class="contenido-principal">
+    <div class="contenido balance">
         <h2>REPORTE DE BALANCE HÍDRICO - DIÁLISIS PERITONEAL</h2>
+
         <form method="post" action="../../backend/php/recambios.php">
-        <label>Paciente</label>
-        <input type="text" id="username" name="username" value="<?php echo $nombre_paciente; ?>" readonly><br>
-        
-        <label>Fecha</label>
-        <input type="date" id="fecha_tratamiento" name="fecha_tratamiento" required><br>
 
-        <label>Sistema</label>
-        <select id="sistema" name="sistema" > 
-            <option value="Baxter"> Baxter</option>
-            <option value="Fresenius Medical Care. ">Fresenius Medical Care. </option>
-        </select><br>
-
-        <label> P/A</label>
-        <input type="text" id="presion_arterial" name="presion_arterial"><br>
-
-        <label>Pulso</label>
-        <input type="number" id="pulso" name="pulso"><br>
-
-        <div>
-            <label>Fecha</label>
-            <input type="date" id="fecha" name="fecha"><br>
-            <label>Hora</label>
-            <input type="time" id="hora" name="hora"><br>
+        <div class="titulo">
+            <div class="fila">
+                <div class="columna">
+                    <label>Paciente</label>
+                    <input type="text" name="username" value="<?php echo $nombre_paciente; ?>" readonly>
+                </div>
+                <div class="columna">
+                    <label>Fecha de Tratamiento</label>
+                    <input type="date" name="fecha_tratamiento" required>
+                </div>
+                <div class="columna">
+                    <label>Sistema</label>
+                    <select name="sistema">
+                        <option value="Baxter">Baxter</option>
+                        <option value="Fresenius Medical Care">Fresenius Medical Care</option>
+                    </select>
+                </div>
+                <div class="columna">
+                    <label>P/A</label>
+                    <input type="text" name="presion_arterial">
+                </div>
+            </div>
+            <div class="fila">
+                <div class="columna">
+                    <label>Pulso</label>
+                    <input type="number" name="pulso">
+                </div>
+                <div class="columna">
+                    <label>Fecha de Registro</label>
+                    <input type="date" name="fecha">
+                </div>
+                <div class="columna">
+                    <label>Hora de Registro</label>
+                    <input type="time" name="hora">
+                </div>
+            </div>
         </div>
 
         <div>
@@ -221,9 +236,10 @@ mysqli_close($conectar);
                 </tr>
                 </thead>
             </table>
-            
-            <button id="calcular" type="button">Calcular</button>
-            <button type="submit">Guardar en Base de Datos</button>
+            <div class ="btn">
+            <button id="calcular" type="button" class="btn-calcular">Calcular</button>
+            <button type="submit"class="btn-guardar">Guardar en Base de Datos</button>
+            </div>
             <h4 id="analisis">Análisis de resultados para el paciente:</h4>
         </form>
         <script src="../js/main.js"></script>

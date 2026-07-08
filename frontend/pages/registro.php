@@ -55,33 +55,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    <div class="formulario">
-        <h1> Registro de Pacientes </h1> 
-        <form method="post" action="registro.php">
+    <div class="login">
+        <div class="formulario">
+            <h1> Registro de Pacientes </h1> 
+            <form method="post" action="registro.php">
 
-            <div class="nombre">
-                <input type="text" id="nombre" name="nombre" placeholder="Ej. Juan Perez" required >
-                <label> Nombre y Apellido </label> 
-            </div>
+                <div class="username">
+                    <input type="text" id="nombre" name="nombre" placeholder="Ej. Juan Perez" required >
+                    <label> Nombre y Apellido </label> 
+                </div>
 
-            <div class="username">
-                <input type="text" id="usuario" name="usuario" placeholder="Ej. juanpere05" required>
-                <label> Nombre de usuario</label>
-            </div>
+                <div class="username">
+                    <input type="text" id="usuario" name="usuario" placeholder="Ej. juanpere05" required>
+                    <label> Nombre de usuario</label>
+                </div>
 
-            <div class="Contrasena">
-                <input type="password" id="contrasena" name="contrasena" placeholder="Ingrese su contraseña " required>
-                <label> Contraseña </label>
-            </div>
-            
-            <input type="submit" value="Registrarse">
-            
-            <div class="registrarse">
-                <a href="javascript:history.back()">Volver</a>
-            </div>
+                <div class="Contraseña">
+                    <input type="password" id="contrasena" name="contrasena" placeholder="Ingrese su contraseña " required>
+                    <label> Contraseña </label>
+                </div>
+                
+                <input type="submit" value="Registrarse">
+                
+                <div class="registrarse">
+                    <a href="javascript:history.back()">Volver</a>
+                </div>
 
-
-        </form>
+            </form>
+        </div>
     </div>
 </body>
 </html>
