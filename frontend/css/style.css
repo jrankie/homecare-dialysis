@@ -8,6 +8,30 @@ body{
 
 
 
+.tbalance{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.tbalance th{
+    background-color: #1E7F8C;
+    color: white;
+    padding: 12px;
+}
+
+.tbalance tr{
+    border-bottom: 1px solid #e4ded8;
+}
+
+.tbalance td{
+    padding: 11px 32px;
+    text-align: center;
+}
+
+
+
+
+
 .navbar{
     width: 250px;
     height: 100vh;
@@ -50,6 +74,7 @@ body{
     margin-left: 250px;      
     width: calc(100% - 250px);
     min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
     display: flex;
     flex-direction: column;
@@ -58,4 +83,4 @@ body{
     padding: 40px;
     box-sizing: border-box;
 }
-
+

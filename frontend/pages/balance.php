@@ -45,11 +45,7 @@ mysqli_close($conectar);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Balance Hídrico - HomeCare Dialysis</title>
     <link rel="stylesheet" href="../css/style.css">
-    <style>
-        table,th,td{
-            border:1px solid black;
-        }
-    </style>
+
 </head>
 
 <body>
@@ -93,7 +89,8 @@ mysqli_close($conectar);
         </div>
 
         <div>
-            <table>
+            <table class="tbalance">
+                <thead>
                 <tr>
                     <th>Recambio</th>
                     <th>Concentración</th>
@@ -222,6 +219,7 @@ mysqli_close($conectar);
                     <td></td>
                     <td id="totalBalance"></td>
                 </tr>
+                </thead>
             </table>
             
             <button id="calcular" type="button">Calcular</button>
