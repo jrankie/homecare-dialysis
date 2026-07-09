@@ -6,7 +6,7 @@ if (!isset($_SESSION['usuario']) || $_SESSION['rol'] !== 'paciente') {
     exit();
 }
 
-require_once "../../backend/config/dbconn.php";
+require "../../backend/config/dbconn.php";
 $paciente_id = $_SESSION['paciente_id'];
 
 $sql = $conectar->prepare("SELECT valor_glucosa, momento, diagnostico, created_at FROM glicemias WHERE paciente_id = ? ORDER BY created_at DESC");

@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once "../../backend/config/dbconn.php";
+require "../../backend/config/dbconn.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nombre = trim($_POST['nombre']);
@@ -13,13 +13,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $check_sql->execute();
     $check_res = $check_sql->get_result();
 
-    if ($check_res->num_rows > 0) {
-        $mensaje = "El nombre de usuario ya está registrado.";
-        echo "<script language='javascript'>alert('$mensaje'); window.history.back();</script>";
-        $check_sql->close();
-        mysqli_close($conectar);
-        exit();
-    }
     $check_sql->close();
 
     $hash_contrasena = password_hash($contrasena, PASSWORD_BCRYPT);
