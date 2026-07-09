@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../config/dbconn.php';
+require '../config/dbconn.php';
 
 if (!isset($_SESSION['usuario']) || $_SESSION['rol'] !== 'paciente') {
     echo "<script language='javascript'>
@@ -35,13 +35,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit();
         }
 
-        $db = $conectar;
-
         // transaccion para guardar los 4 a la vez
-        $db->begin_transaction();
+        $conectar->begin_transaction();
 
         try {
-            $sql = $db->prepare("INSERT INTO recambios 
+            $sql = $conectar->prepare("INSERT INTO recambios 
                 (paciente_id, fecha_tratamiento, tipo_sistemadp, presion_arterial, pulso, recambio_num, concentracion, infusion, drenaje, cualidad, balance) 
                 VALUES (?, ?, ?, ?, ?, ?, ?, 2000, ?, ?, ?)");
 
@@ -49,35 +47,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $concentracion = isset($_POST['concentracion' . $i]) ? trim($_POST['concentracion' . $i]) : '1.5%';
                 $drenaje = isset($_POST['drenar' . $i]) && $_POST['drenar' . $i] !== '' ? intval($_POST['drenar' . $i]) : 0;
                 $cualidad = isset($_POST['cualidad' . $i]) ? trim($_POST['cualidad' . $i]) : 'Claro';
-                
+
                 $balance = 2000 - $drenaje;
 
-                $sql->bind_param('isssiisisi', 
-                    $paciente_id, 
-                    $fecha_tratamiento, 
-                    $sistema, 
-                    $presion_arterial, 
-                    $pulso, 
-                    $i, 
-                    $concentracion, 
-                    $drenaje, 
-                    $cualidad, 
+                $sql->bind_param('isssiisisi',
+                    $paciente_id,
+                    $fecha_tratamiento,
+                    $sistema,
+                    $presion_arterial,
+                    $pulso,
+                    $i,
+                    $concentracion,
+                    $drenaje,
+                    $cualidad,
                     $balance
                 );
 
                 $sql->execute();
             }
 
-            $db->commit();
+            $conectar->commit();
             $mensaje = "Reporte de balance hídrico guardado correctamente en la base de datos.";
-            
+
             echo "<script language='javascript'>
                 alert('$mensaje');
                 window.location.href = '../../frontend/pages/balance.php';
             </script>";
 
         } catch (Exception $e) {
-            $db->rollback();
+            $conectar->rollback();
             $mensaje = "Error al guardar el reporte: " . $e->getMessage();
             echo "<script language='javascript'>
                 alert('$mensaje');
@@ -88,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (isset($sql)) {
             $sql->close();
         }
-        mysqli_close($db);
+        mysqli_close($conectar);
     }
 }
 ?>

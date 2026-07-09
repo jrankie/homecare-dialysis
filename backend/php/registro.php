@@ -1,5 +1,5 @@
 <?php
-require_once '../config/dbconn.php';
+require'../config/dbconn.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['nombre']) && isset($_POST['usuario']) && isset($_POST['contrasena'])) {
@@ -15,9 +15,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit();
         }
 
-        $db = $conectar;
 
-        $check_sql = $db->prepare("SELECT id FROM usuarios WHERE usuario = ?");
+        $check_sql = $conectar->prepare("SELECT id FROM usuarios WHERE usuario = ?");
         $check_sql->bind_param('s', $usuario);
         $check_sql->execute();
         $check_res = $check_sql->get_result();
@@ -28,29 +27,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 window.history.back();
             </script>";
             $check_sql->close();
-            mysqli_close($db);
+            mysqli_close($conectar);
             exit();
         }
         $check_sql->close();
 
-        // transaccion para asegurar que se guarden los dos
-        $db->begin_transaction();
+        // esta transaccion nuevamente se usa para asegurar que se guarden losh dosh :)
+        $conectar->begin_transaction();
 
         try {
             $hash_contrasena = password_hash($contrasena, PASSWORD_BCRYPT);
 
-            $sql_user = $db->prepare("INSERT INTO usuarios (nombre, usuario, contrasena, rol) VALUES (?, ?, ?, 'paciente')");
+            $sql_user = $conectar->prepare("INSERT INTO usuarios (nombre, usuario, contrasena, rol) VALUES (?, ?, ?, 'paciente')");
             $sql_user->bind_param('sss', $nombre, $usuario, $hash_contrasena);
             $sql_user->execute();
-            $usuario_id = $db->insert_id;
+            $usuario_id = $conectar->insert_id;
             $sql_user->close();
 
-            $sql_paciente = $db->prepare("INSERT INTO pacientes (usuario_id, nombre_completo) VALUES (?, ?)");
+            $sql_paciente = $conectar->prepare("INSERT INTO pacientes (usuario_id, nombre_completo) VALUES (?, ?)");
             $sql_paciente->bind_param('is', $usuario_id, $nombre);
             $sql_paciente->execute();
             $sql_paciente->close();
 
-            $db->commit();
+            $conectar->commit();
 
             $mensaje = "Paciente registrado exitosamente. Ya puede iniciar sesión.";
             echo "<script language='javascript'>
@@ -58,16 +57,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 window.location.href = '../../frontend/pages/login.html';
             </script>";
 
-        } catch (Exception $e) {
-            $db->rollback();
-            $mensaje = "Error al registrar el paciente: " . $e->getMessage();
+        } catch (Exception) {
+            $conectar->rollback();
+            $mensaje = "Error al registrar el paciente.";
             echo "<script language='javascript'>
-                alert('$mensaje');
-                window.history.back();
-            </script>";
+            alert('$mensaje');
+            window.history.back();
+        </script>";
         }
 
-        mysqli_close($db);
+        mysqli_close($conectar);
     }
 }
 ?>

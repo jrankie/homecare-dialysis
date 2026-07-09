@@ -6,7 +6,7 @@ if (!isset($_SESSION['usuario'])) {
     exit();
 }
 
-require_once "../../backend/config/dbconn.php";
+require "../../backend/config/dbconn.php";
 
 $rol = $_SESSION['rol'];
 $nombre_usuario = $_SESSION['nombre'];
