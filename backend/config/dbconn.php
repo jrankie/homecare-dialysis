@@ -2,7 +2,7 @@
 
 $host     = "127.0.0.1";
 $usuario  = "root";
-$password = "root"; // sin clave en datagrip
+$password = "";
 $database = "homecare_dialysis";
 $conectar = mysqli_connect($host, $usuario, $password, $database);
 if (!$conectar) {

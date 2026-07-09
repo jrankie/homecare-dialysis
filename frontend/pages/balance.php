@@ -6,7 +6,7 @@ if (!isset($_SESSION['usuario']) || $_SESSION['rol'] !== 'paciente') {
     exit();
 }
 
-require_once "../../backend/config/dbconn.php";
+require "../../backend/config/dbconn.php";
 $paciente_id = $_SESSION['paciente_id'];
 $nombre_paciente = $_SESSION['nombre'];
 
@@ -30,7 +30,7 @@ while ($fila = $resultado->fetch_assoc()) {
     } else {
         $estado = "Excesiva retención";
     }
-    
+
     $fila['estado'] = $estado;
     $historial[] = $fila;
 }
