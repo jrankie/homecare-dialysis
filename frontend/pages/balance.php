@@ -55,7 +55,7 @@ mysqli_close($conectar);
             <li><a href="general.php">Panel General</a></li>
             <li><a href="balance.php" class="activo" >Balance Hídrico</a></li>
             <li><a href="glicemias.php">Análisis Glicemia</a></li>
-            <li><a href="reportes.php">Analítica Visual</a></li>
+            <li><a href="chart.html">Analítica Visual</a></li>
             <li><a href="../../backend/php/logout.php">Cerrar Sesión</a></li>
         </ul>
     </nav>

@@ -29,6 +29,7 @@ mysqli_close($conectar);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Glicemias - HomeCare Dialysis</title>
     <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -38,7 +39,7 @@ mysqli_close($conectar);
             <li><a href="general.php">Panel General</a></li>
             <li><a href="balance.php">Balance Hídrico</a></li>
             <li><a href="glicemias.php" class="activo">Análisis Glicemia</a></li>
-            <li><a href="reportes.php">Analítica Visual</a></li>
+            <li><a href="chart.html">Analítica Visual</a></li>
             <li><a href="../../backend/php/logout.php">Cerrar Sesión</a></li>
         </ul>
     </nav>
@@ -64,6 +65,28 @@ mysqli_close($conectar);
         <button id="analizar" type="submit" class="glicemia-btn">Analizar y Guardar</button>
         </div>
         </form>
+
+        <div class="modulo-glicemia" style="margin-top: 30px; width: 100%; max-width: 600px; padding: 30px;">
+            <h3>Gráfico de Tendencia</h3>
+            <div style="display: flex; gap: 15px; margin-bottom: 20px; align-items: flex-end;">
+                <div style="flex: 1;">
+                    <label style="color: #006064; font-weight: 600; font-size: 0.9rem; display: block; margin-bottom: 8px;">Fecha de Inicio</label>
+                    <input type="date" id="fecha_inicio" required style="padding: 10px; border: 1px solid #ccc; border-radius: 8px; width: 100%;">
+                </div>
+                <div style="flex: 1;">
+                    <label style="color: #006064; font-weight: 600; font-size: 0.9rem; display: block; margin-bottom: 8px;">Fecha Fin</label>
+                    <input type="date" id="fecha_fin" required style="padding: 10px; border: 1px solid #ccc; border-radius: 8px; width: 100%;">
+                </div>
+                <div>
+                    <button type="button" id="btnGraficarGlicemia" class="glicemia-btn">Graficar</button>
+                </div>
+            </div>
+            <div style="width: 100%; height: 350px; background: white; padding: 15px; border-radius: 12px;">
+                <canvas id="glicemiaChart"></canvas>
+            </div>
+        </div>
+
+        <script src="../js/glicemias.js"></script>
 
         <h3>Historial</h3>
         <div class="container">

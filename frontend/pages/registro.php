@@ -8,12 +8,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $usuario = trim($_POST['usuario']);
     $contrasena = trim($_POST['contrasena']);
 
-    $check_sql = $conectar->prepare("SELECT id FROM usuarios WHERE usuario = ?");
-    $check_sql->bind_param('s', $usuario);
-    $check_sql->execute();
-    $check_res = $check_sql->get_result();
+    $sql = $conectar->prepare("SELECT id FROM usuarios WHERE usuario = ?");
+    $sql->bind_param('s', $usuario);
+    $sql->execute();
+    $check_res = $sql->get_result();
 
-    $check_sql->close();
+    $sql->close();
 
     $hash_contrasena = password_hash($contrasena, PASSWORD_BCRYPT);
 

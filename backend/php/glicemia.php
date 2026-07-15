@@ -1,10 +1,10 @@
 <?php
 session_start();
-require '../config/dbconn.php';
+require_once '../config/dbconn.php';
 
 if (!isset($_SESSION['usuario']) || $_SESSION['rol'] !== 'paciente') {
     echo "<script language='javascript'>
-        alert('Inicie sesión como paciente.');
+        alert('Acceso denegado. Debe iniciar sesión como paciente.');
         window.location.href = '../../frontend/pages/login.html';
     </script>";
     exit();
@@ -20,6 +20,7 @@ if (!$paciente_id) {
     exit();
 }
 
+
 function obtenerDiagnostico($valor, $momento) {
     if ($valor < 70) {
         return "Hipoglucemia";
@@ -33,7 +34,7 @@ function obtenerDiagnostico($valor, $momento) {
         if ($valor <= 130) return "Normal";
         if ($valor <= 140) return "Prediabetes";
         return "Hiperglucemia";
-    } else {
+    } else { // despues
         if ($valor < 140) return "Normal";
         if ($valor <= 199) return "Prediabetes";
         return "Hiperglucemia";
@@ -55,9 +56,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $diagnostico = obtenerDiagnostico($valor_glucosa, $momento);
 
+        $db = $conectar;
 
-        $sql = $conectar->prepare("INSERT INTO glicemias (paciente_id, valor_glucosa, momento, diagnostico) VALUES (?, ?, ?, ?)");
-
+        $sql = $db->prepare("INSERT INTO glicemias (paciente_id, valor_glucosa, momento, diagnostico) VALUES (?, ?, ?, ?)");
+        
         $sql->bind_param('idss', $paciente_id, $valor_glucosa, $momento, $diagnostico);
 
         if ($sql->execute()) {
@@ -72,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </script>";
 
         $sql->close();
-        mysqli_close($conectar);
+        mysqli_close($db);
     }
 }
 ?>
