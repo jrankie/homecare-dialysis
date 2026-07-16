@@ -35,8 +35,6 @@ button.addEventListener("click", function(event) {
     if(document.getElementById("cualidad4").value == "Turbio") turbioCount++
 
 
-
-
     if(totalBalance <=0){
         document.getElementById("analisis").innerHTML="Balance Hídrico Favorable. Condición normal, no hay retención de líquidos."
     }else if(totalBalance >=1 && totalBalance <=2000){

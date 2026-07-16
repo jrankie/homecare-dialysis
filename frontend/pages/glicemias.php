@@ -45,26 +45,39 @@ mysqli_close($conectar);
     </nav>
 
     <div class="contenido glicemia">
-        <div class="modulo-glicemia">
-        <h2>Módulo de Glicemias</h2>
+<div class="modulo-glicemia">
 
-        <form method="post" action="../../backend/php/glicemia.php">
+    <h2>Módulo de Glicemias</h2>
+
+    <form method="post" action="../../backend/php/glicemia.php">
+
         <label>Valor de glucosa (mg/dL)</label>
-        <input type="number" id="glucosa" name="glucosa" required><br>
+
+        <input type="number" id="glucosa" name="glucosa" required>
 
         <label>Momento de medición</label>
+
         <select id="momento" name="momento" required>
+
             <option value="ayunas">Ayunas</option>
             <option value="antes">Antes de la comida</option>
             <option value="despues">2 horas después de la comida</option>
-        </div>
-</div>
-        </select><br>
+
+        </select>
 
         <div class="boton-glicemia">
-        <button id="analizar" type="submit" class="glicemia-btn">Analizar y Guardar</button>
+
+            <button id="analizar" type="submit" class="glicemia-btn">
+
+                Analizar y Guardar
+
+            </button>
+
         </div>
-        </form>
+
+    </form>
+
+</div>
 
         <div class="modulo-glicemia" style="margin-top: 30px; width: 100%; max-width: 600px; padding: 30px;">
             <h3>Gráfico de Tendencia</h3>
@@ -89,7 +102,7 @@ mysqli_close($conectar);
         <script src="../js/glicemias.js"></script>
 
         <h3>Historial</h3>
-        <div class="container">
+        <div class="cards-glicemia">
             <?php
             foreach ($historial as $fila) {
                 $valor = htmlspecialchars($fila['valor_glucosa']);

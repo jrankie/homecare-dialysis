@@ -65,23 +65,32 @@ mysqli_close($conectar);
 
             <div class="panel-texto">    
                 <h2>Panel de Control General</h2>
-                <p>Bienvenido de nuevo, <strong><?php echo htmlspecialchars($nombre_usuario); ?></strong>. Rol: <em><?php echo ucfirst($rol); ?></em></p>
+
+                <p class="bienvenida">
+
+                    Bienvenido de nuevo, <strong><?php echo htmlspecialchars($nombre_usuario); ?></strong>
+                </p>
+
+                <p class="rol">
+                    Rol: <strong><?php echo ucfirst($rol); ?></strong>
+                </p>
 
                 <?php if ($rol === 'paciente') { ?>
                     <h3>Resumen del Día</h3>
+                    <div class="dashboard">
                     
-                    <p class="card"><strong>Última Glicemia de Hoy:</strong> 
+                    <p class="card dashboard"><strong>Última Glicemia de Hoy:</strong><br> 
                     <?php if ($glicemia_hoy) { 
                         $val = htmlspecialchars($glicemia_hoy['valor_glucosa']);
                         $mom = htmlspecialchars(ucfirst($glicemia_hoy['momento']));
                         $diag = htmlspecialchars($glicemia_hoy['diagnostico']);
-                        echo "$val mg/dL ($mom) - Estado: $diag";
+                        echo "<span style='font-size: 1.5rem; color: #1E7F8C; font-weight: bold;'>$val mg/dL</span><br>($mom) - Estado: $diag";
                     } else { 
                         echo "Sin mediciones hoy";
                     } ?>
                     </p>
 
-                    <p class="card"><strong>Balance Hídrico de Hoy:</strong> 
+                    <p class="card dashboard"><strong>Balance Hídrico de Hoy:</strong><br> 
                     <?php if ($balance_hoy && $balance_hoy['total_infusion'] > 0) { 
                         $inf = intval($balance_hoy['total_infusion']);
                         $dre = intval($balance_hoy['total_drenaje']);
@@ -94,11 +103,12 @@ mysqli_close($conectar);
                         } else {
                             $diag_bal = "Excesiva retención";
                         }
-                        echo "$bal ml (Infundido: $inf ml, Drenado: $dre ml) - Estado: $diag_bal";
+                        echo "<span style='font-size: 1.5rem; color: #1E7F8C; font-weight: bold;'>$bal ml</span><br>Inf: $inf ml | Dre: $dre ml<br>Estado: $diag_bal";
                     } else { 
                         echo "Sin registros hoy";
                     } ?>
                     </p>
+                    </div>
 
                 <?php } else { ?>
                     <p>Estás conectado con un perfil del personal médico.</p>
