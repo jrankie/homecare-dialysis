@@ -114,6 +114,7 @@ mysqli_close($conectar);
                     <th>Cualidad</th>
                     <th>Balance</th>
                 </tr>
+                
                 <tr>
                     <td>1</td>
                     <td>
@@ -242,34 +243,44 @@ mysqli_close($conectar);
             </div>
             <h4 id="analisis">Análisis de resultados para el paciente:</h4>
         </form>
-        <script src="../js/main.js"></script>
+                <script src="../js/main.js"></script>
 
-        <h3>Historial</h3>
-        <div>
-            <table>
-                <tr>
-                    <th>Fecha</th>
-                    <th>Paciente</th>
-                    <th>Balance Diario</th>
-                    <th>Estado</th>
-                </tr>
+        <div class="historial-balance">
+            <h3>Historial de Balances</h3>
+
+            <div class="card-historial-balance">
+
                 <?php
                 foreach ($historial as $fila) {
-                    $fecha = $fila['fecha_tratamiento'];
-                    $paciente = $nombre_paciente;
-                    $balance = $fila['total_balance'];
-                    $estado = $fila['estado'];
-                    
-                    echo "<tr>
-                        <td>$fecha</td>
-                        <td>$paciente</td>
-                        <td>$balance ml</td>
-                        <td>$estado</td>
-                    </tr>";
+
+                    $fecha = htmlspecialchars($fila['fecha_tratamiento']);
+                    $paciente = htmlspecialchars($nombre_paciente);
+                    $balance = htmlspecialchars($fila['total_balance']);
+                    $estado = htmlspecialchars($fila['estado']);
+
+                    echo "
+                    <div class='card'>
+
+                        <p class='card-valor'>$balance ml</p>
+
+                        <p class='card-detalle'>
+                            <strong>Paciente:</strong> $paciente
+                        </p>
+
+                        <p class='card-detalle'>
+                            <strong>Fecha:</strong> $fecha
+                        </p>
+
+                        <span class='card-estado'>$estado</span>
+
+                    </div>";
                 }
                 ?>
-            </table>
+
+            </div>
         </div>
+
     </div>
+
 </body>
 </html>
