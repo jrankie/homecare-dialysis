@@ -2,18 +2,30 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>HomeCare Dialysis - Inicio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomeCare Dialysis - Acceso</title>
+    <link rel="stylesheet" href="frontend/css/style.css">
+    <style>
+        body { display: flex; justify-content: center; align-items: center; height: 100vh; flex-direction: column; }
+        .inicio-container { text-align: center; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 350px; }
+        .btn-inicio { display: block; width: 100%; padding: 12px; margin-top: 10px; text-decoration: none; border-radius: 8px; font-weight: bold; }
+        .btn-login { background: #1E7F8C; color: white; }
+        .btn-registro { background: #f0f0f0; color: #333; }
+        img { max-width: 200px; margin-bottom: 20px; }
+    </style>
 </head>
 <body>
-    <h1>Sistema de Monitoreo HomeCare Dialysis</h1>
-    <p>Plataforma para el registro de diálisis peritoneal y control de glucosa.</p>
-    
-    <h2>Secciones del Sistema:</h2>
-    <ul>
-        <li><a href="frontend/pages/login.html">Iniciar Sesión (Login)</a></li>
-        <li><a href="frontend/pages/registro.php"> Registrar paciente</a></li>
-        <li><a href="frontend/pages/balance.php">Registrar Balance Hídrico (Diálisis)</a></li>
-        <li><a href="frontend/pages/glicemias.php">Registrar Glucosa (Glicemia)</a></li>
-    </ul>
+
+    <div class="inicio-container">
+        <img src="frontend/imgs/index.png" alt="Logo HomeCare">
+        <h2>Bienvenido</h2>
+        <p>Sistema de Gestión de Diálisis</p>
+
+        <a href="frontend/pages/login.html" class="btn-inicio btn-login">Iniciar Sesión</a>
+        <a href="frontend/pages/registro.php" class="btn-inicio btn-registro">Registrarse</a>
+        
+
+    </div>
+
 </body>
 </html>
